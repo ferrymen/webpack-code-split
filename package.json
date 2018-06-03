@@ -4,7 +4,7 @@
   "description": "webpack code split, vendor.js、common.js、manifest.js、common.css",
   "main": "webpack.config.js",
   "scripts": {
-    "clean": "rimraf dist/html/* dist/js/* dist/css/*",
+    "clean": "rimraf dist/*",
     "copycss": "cp src/css/base.css dist/css",
     "pack": "webpack",
     "prepack": "npm run clean",

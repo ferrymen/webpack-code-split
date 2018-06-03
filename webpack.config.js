@@ -35,12 +35,18 @@ module.exports = {
     }),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'common',
-      filename: 'js/[name].js',
+      filename: 'js/[name].[chunkhash:7].js',
       chunks: ['nintendo', 'sony', 'microsoft']//从'nintendo','sony', 'microsoft'中抽取commons chunk
     }),
     
     new ExtractTextWebpackPlugin({
-      filename: 'css/[name].[chunkhash:7].css'
+      filename:  (getPath) => {
+        var _filename = getPath('css/[name].[chunkhash:7].css');
+        if (/common\..*\.css/.test(_filename)) {
+          _filename = _filename.replace('css/', 'common/css/')
+        }
+        return _filename;
+      },
     }),
     new HtmlWebpackPlugin({
       chunks: ['manifest', 'vender', 'common', 'nintendo'],
