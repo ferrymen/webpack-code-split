@@ -31,11 +31,12 @@ module.exports = {
   plugins: [
     new webpack.optimize.CommonsChunkPlugin({
       minChunks: Infinity,
-      names: ['vender', 'manifest']
+      names: ['vender', 'manifest'],
+      filename: 'common/js/[name].[chunkhash:7].js',
     }),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'common',
-      filename: 'js/[name].[chunkhash:7].js',
+      filename: 'common/js/[name].[chunkhash:7].js',
       chunks: ['nintendo', 'sony', 'microsoft']//从'nintendo','sony', 'microsoft'中抽取commons chunk
     }),
     
